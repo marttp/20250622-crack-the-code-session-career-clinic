@@ -87,6 +87,27 @@
 4. **Use cases**: Shortest path vs topological sorting
 5. **Implementation**: Show basic pseudocode
 
+### "Explain how the JavaScript Event Loop works"
+
+**Good Answer Structure:**
+
+1. **Purpose**: Allows JavaScript (single-threaded) to handle asynchronous operations without blocking the main thread
+2. **Core Concepts**: Explain call stack, event queue, callback queue, microtasks queue, web APIs
+3. **How it works**: Explain how tasks are queued, executed, and how the loop works
+4. **Use Cases**: Asynchronous operations, non-blocking code
+
+> Understanding setTimeout(fn, 0) vs Promise.resolve().then(fn) execution order
+
+### "Compare CSR, SSR, and SSG in web development"
+
+**Good Answer Structure:**
+
+1. **CSR**: Explain How it works, pros, cons, use cases
+2. **SSR**: Explain How it works, pros, cons, use cases
+3. **SSG**: Explain How it works, pros, cons, use cases
+4. **Trade-offs**: Compare and contrast, when to use each
+5. **Modern Frameworks**: Next.js, Nuxt.js
+
 ## Red Flags to Avoid
 
 - **Memorized answers**: Sounds rehearsed without understanding
