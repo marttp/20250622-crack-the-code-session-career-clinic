@@ -38,6 +38,10 @@ const sortedMultiple = [...people].sort((a, b) => {
 });
 console.log(sortedMultiple);
 
+// Shortened version (if ages are equal (a.age - b.age === 0), sort by name)
+const sortedMultipleV2 = [...people].sort((a, b) => a.age - b.age || a.name.localeCompare(b.name));
+console.log(sortedMultipleV2);
+
 // ===== ADVANCED SORTING PATTERNS =====
 
 // Sort by Frequency
@@ -76,10 +80,10 @@ console.log(sortedWords); // ['a', 'pie', 'book', 'apple', 'washington']
 
 // JavaScript's Array.sort() is stable (maintains relative order of equal elements)
 const students = [
-    { name: 'Alice', grade: 85 },
-    { name: 'Bob', grade: 90 },
-    { name: 'Charlie', grade: 85 },
     { name: 'David', grade: 90 }
+    { name: 'Charlie', grade: 85 },
+    { name: 'Bob', grade: 90 },
+    { name: 'Alice', grade: 85 },
 ];
 
 // Sort by grade - Alice and Charlie maintain their relative order
