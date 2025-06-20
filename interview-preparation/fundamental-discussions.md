@@ -98,15 +98,16 @@
 
 > Understanding setTimeout(fn, 0) vs Promise.resolve().then(fn) execution order
 
-### "Compare CSR, SSR, and SSG in web development"
+### "Compare CSR, SSR, SSG, and ISR in web development"
 
 **Good Answer Structure:**
 
-1. **CSR**: Explain How it works, pros, cons, use cases
-2. **SSR**: Explain How it works, pros, cons, use cases
-3. **SSG**: Explain How it works, pros, cons, use cases
-4. **Trade-offs**: Compare and contrast, when to use each
-5. **Modern Frameworks**: Next.js, Nuxt.js
+1. **CSR - Client-Side Rendering**: Explain How it works, pros, cons, use cases
+2. **SSR - Server-Side Rendering**: Explain How it works, pros, cons, use cases
+3. **SSG - Static Site Generation**: Explain How it works, pros, cons, use cases
+4. **ISR - Incremental Static Regeneration**: Explain How it works, pros, cons, use cases
+5. **Trade-offs**: Compare and contrast, when to use each
+6. **Modern Frameworks**: Next.js, Nuxt.js
 
 ## Red Flags to Avoid
 
