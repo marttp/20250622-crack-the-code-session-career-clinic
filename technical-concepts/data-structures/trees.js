@@ -371,21 +371,6 @@ function sortedArrayToBST(nums) {
 
 // ===== TREE UTILITIES =====
 
-// Print tree structure
-function printTree(root, prefix = '', isLast = true) {
-    if (!root) return;
-    
-    console.log(prefix + (isLast ? '└── ' : '├── ') + root.val);
-    
-    const children = [root.left, root.right].filter(child => child !== null);
-    
-    children.forEach((child, index) => {
-        const isLastChild = index === children.length - 1;
-        const extension = isLast ? '    ' : '│   ';
-        printTree(child, prefix + extension, isLastChild);
-    });
-}
-
 // Convert tree to array (level order)
 function treeToArray(root) {
     if (!root) return [];
@@ -476,15 +461,11 @@ class BinarySearchTree {
     isValid() {
         return isValidBST(this.root);
     }
-    
-    print() {
-        printTree(this.root);
-    }
 }
 
 // ===== TEST FUNCTIONS =====
 
-function testTrees() {
+export function testTrees() {
     console.log('=== Testing Tree Operations ===');
     
     // Create a sample tree
@@ -501,9 +482,7 @@ function testTrees() {
     root.left.right = new TreeNode(3);
     root.right.left = new TreeNode(5);
     root.right.right = new TreeNode(7);
-    
-    console.log('Tree structure:');
-    printTree(root);
+
     
     console.log('Inorder:', inorderTraversal(root));
     console.log('Preorder:', preorderTraversal(root));

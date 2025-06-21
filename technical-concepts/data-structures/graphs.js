@@ -299,112 +299,6 @@ function topologicalSort(graph) {
     return stack.reverse();
 }
 
-// ===== CONNECTED COMPONENTS =====
-
-// Find all connected components - O(V + E)
-function findConnectedComponents(graph) {
-    const visited = new Set();
-    const components = [];
-    
-    function dfsComponent(vertex, component) {
-        visited.add(vertex);
-        component.push(vertex);
-        
-        const neighbors = graph.getNeighbors(vertex);
-        for (let edge of neighbors) {
-            if (!visited.has(edge.vertex)) {
-                dfsComponent(edge.vertex, component);
-            }
-        }
-    }
-    
-    for (let vertex of graph.getVertices()) {
-        if (!visited.has(vertex)) {
-            const component = [];
-            dfsComponent(vertex, component);
-            components.push(component);
-        }
-    }
-    
-    return components;
-}
-
-// ===== MINIMUM SPANNING TREE =====
-
-// Kruskal's Algorithm - O(E log E)
-function kruskalMST(graph) {
-    const edges = [];
-    const vertices = graph.getVertices();
-    
-    // Get all edges
-    for (let vertex of vertices) {
-        const neighbors = graph.getNeighbors(vertex);
-        for (let edge of neighbors) {
-            if (vertex < edge.vertex) { // Avoid duplicate edges
-                edges.push({
-                    from: vertex,
-                    to: edge.vertex,
-                    weight: edge.weight
-                });
-            }
-        }
-    }
-    
-    // Sort edges by weight
-    edges.sort((a, b) => a.weight - b.weight);
-    
-    // Union-Find for cycle detection
-    const parent = new Map();
-    const rank = new Map();
-    
-    function find(x) {
-        if (parent.get(x) !== x) {
-            parent.set(x, find(parent.get(x)));
-        }
-        return parent.get(x);
-    }
-    
-    function union(x, y) {
-        const rootX = find(x);
-        const rootY = find(y);
-        
-        if (rootX !== rootY) {
-            if (rank.get(rootX) < rank.get(rootY)) {
-                parent.set(rootX, rootY);
-            } else if (rank.get(rootX) > rank.get(rootY)) {
-                parent.set(rootY, rootX);
-            } else {
-                parent.set(rootY, rootX);
-                rank.set(rootX, rank.get(rootX) + 1);
-            }
-            return true;
-        }
-        return false;
-    }
-    
-    // Initialize Union-Find
-    for (let vertex of vertices) {
-        parent.set(vertex, vertex);
-        rank.set(vertex, 0);
-    }
-    
-    const mst = [];
-    let totalWeight = 0;
-    
-    for (let edge of edges) {
-        if (union(edge.from, edge.to)) {
-            mst.push(edge);
-            totalWeight += edge.weight;
-            
-            if (mst.length === vertices.length - 1) {
-                break;
-            }
-        }
-    }
-    
-    return { edges: mst, totalWeight };
-}
-
 // ===== COMMON GRAPH PROBLEMS =====
 
 // Check if graph is bipartite - O(V + E)
@@ -551,12 +445,6 @@ function testGraphs() {
     const { distances, previous } = dijkstra(graph, 'A');
     console.log('\nShortest distances from A:', Object.fromEntries(distances));
     console.log('Shortest path A to E:', getShortestPath(previous, 'A', 'E'));
-    
-    // Test MST
-    const mst = kruskalMST(graph);
-    console.log('\nMinimum Spanning Tree:');
-    console.log('Edges:', mst.edges);
-    console.log('Total weight:', mst.totalWeight);
     
     // Test directed graph
     console.log('\n=== Testing Directed Graph ===');
